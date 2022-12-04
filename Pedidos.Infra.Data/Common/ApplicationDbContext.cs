@@ -43,6 +43,8 @@ namespace Pedidos.Infra.Data.Common
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            SeedingService.Seed(modelBuilder);
+
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.ApplyConfigurationsFromAssembly(GetType().Assembly);

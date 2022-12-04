@@ -12,10 +12,11 @@ namespace Pedidos.Infra.Data.Repositories
     {
         #region Fields
 
+        protected const int maxRegistrosPorPagina = 200;
         protected readonly DbContext Context;
         protected readonly DbSet<TEntity> DbSet;
+
         protected int RegistrosPorPagina = 10;
-        protected const int maxRegistrosPorPagina = 200;
 
         #endregion Fields
 
@@ -89,12 +90,20 @@ namespace Pedidos.Infra.Data.Repositories
 
         public TEntity Update(TEntity entity)
         {
-            throw new NotImplementedException();
+            Context.Update(entity);
+
+            Context.SaveChanges();
+
+            return entity;
         }
 
-        public Task<TEntity> UpdateAsync(TEntity entity)
+        public async Task<TEntity> UpdateAsync(TEntity entity)
         {
-            throw new NotImplementedException();
+            Context.Update(entity);
+
+            await Context.SaveChangesAsync();
+
+            return entity;
         }
 
         #endregion Public Methods

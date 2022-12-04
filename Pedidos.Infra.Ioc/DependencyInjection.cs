@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Pedidos.Infra.Data.Common;
