@@ -6,7 +6,7 @@ namespace Pedidos.Application.src.Interfaces
 {
     public interface IProdutoService : IApplicationService<Produto, ProdutoDto>
     {
-        Task<RetornoPaginado<ProdutoDto>> BuscarProdutoPorNome(string text, int pagina);
+        Task<RetornoPaginado<ProdutoDto>> BuscarProdutoPorNome(string text, int pagina, int registrosPorPagina);
 
         Task<ProdutoDto> ObterProdutoComIncludes(long id);
 

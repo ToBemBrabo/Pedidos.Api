@@ -12,9 +12,10 @@ namespace Pedidos.Infra.Data.Repositories
     {
         #region Fields
 
-        protected const int registrosPorPagina = 10;
         protected readonly DbContext Context;
         protected readonly DbSet<TEntity> DbSet;
+        protected int RegistrosPorPagina = 10;
+        protected const int maxRegistrosPorPagina = 200;
 
         #endregion Fields
 
@@ -78,12 +79,12 @@ namespace Pedidos.Infra.Data.Repositories
             return entity;
         }
 
-        public async Task<ResultadoConsultaPaginado<TEntity>> Listar(int pagina)
+        public async Task<ResultadoConsultaPaginado<TEntity>> Listar(int pagina, int registrosPorPagina)
         {
             var result = GetAll()
                 .OrderBy(x => x.Id);
 
-            return await GetReturnPagineted(pagina, result);
+            return await GetReturnPagineted(result, pagina, registrosPorPagina);
         }
 
         public TEntity Update(TEntity entity)
@@ -100,24 +101,42 @@ namespace Pedidos.Infra.Data.Repositories
 
         #region Protected Methods
 
-        protected async Task<ResultadoConsultaPaginado<TEntity>> GetReturnPagineted(int pagina, IOrderedQueryable<TEntity> result)
+        protected async Task<ResultadoConsultaPaginado<TEntity>> GetReturnPagineted(IOrderedQueryable<TEntity> result, int pagina, int? registrosPorPagina)
         {
-            var resultPagineted = await result.Skip(ObterQuantidadeDeRegistrosAListar(pagina))
-                    .Take(registrosPorPagina).ToListAsync();
+            SetNumberOfResults(registrosPorPagina);
+
+            var resultPagineted = await result
+                .Skip(ObterQuantidadeDeRegistrosAListar(pagina))
+                .Take(RegistrosPorPagina).ToListAsync();
 
             return new ResultadoConsultaPaginado<TEntity>
             {
-                PaginaAtual = pagina,
-                TotalDePaginas = result.Count() / registrosPorPagina,
+                PaginaAtual = pagina + 1,
+                TotalDePaginas = (result.Count() / RegistrosPorPagina) + 1,
                 Retorno = resultPagineted,
             };
         }
 
         protected int ObterQuantidadeDeRegistrosAListar(int pagina)
         {
-            return registrosPorPagina * pagina;
+            return RegistrosPorPagina * pagina;
         }
 
         #endregion Protected Methods
+
+        #region Private Methods
+
+        private void SetNumberOfResults(int? registrosPorPagina)
+        {
+            if (registrosPorPagina != null && registrosPorPagina > RegistrosPorPagina)
+            {
+                if (registrosPorPagina < maxRegistrosPorPagina)
+                    RegistrosPorPagina = registrosPorPagina.Value;
+                else
+                    RegistrosPorPagina = maxRegistrosPorPagina;
+            }
+        }
+
+        #endregion Private Methods
     }
 }

@@ -18,13 +18,13 @@ namespace Pedidos.Infra.Data.Repositories
                 .Include(x => x.ListaPrecoProduto)
                     .ThenInclude(x => x.ListaPreco);
 
-        public async Task<ResultadoConsultaPaginado<Produto>> BuscarProdutoPorNome(string text, int pagina)
+        public async Task<ResultadoConsultaPaginado<Produto>> BuscarProdutoPorNome(string text, int pagina, int registrosPorPagina)
         {
             var result = GetAllAsNoTracking()
                 .Where(x => x.Nome.ToUpper().Contains(text))
                 .OrderBy(x => x.Codigo);
 
-            return await GetReturnPagineted(pagina, result);
+            return await GetReturnPagineted(result, pagina, registrosPorPagina);
         }
 
         public async Task<Produto> ObterProdutoComIncludes(long id)

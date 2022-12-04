@@ -8,6 +8,7 @@ namespace Pedidos.Application.src.Validators
         public CidadeValidator()
         {
             RuleFor(x => x.Nome).NotNull().NotEmpty().WithMessage(ObterMensagemCampoObrigatorio("{PropertyName}"));
+            RuleFor(x => x.EstadoId).NotNull().NotEmpty().WithMessage(ObterMensagemCampoObrigatorio("{PropertyName}"));
         }
     }
 }

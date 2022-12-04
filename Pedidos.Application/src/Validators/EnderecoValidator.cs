@@ -11,6 +11,7 @@ namespace Pedidos.Application.src.Validators
             RuleFor(x => x.Bairro).NotNull().NotEmpty().WithMessage(ObterMensagemCampoObrigatorio("{PropertyName}"));
             RuleFor(x => x.Logradouro).NotNull().NotEmpty().WithMessage(ObterMensagemCampoObrigatorio("{PropertyName}"));
             RuleFor(x => x.Bairro).NotNull().NotEmpty().WithMessage(ObterMensagemCampoObrigatorio("{PropertyName}"));
+            RuleFor(x => x.CidadeId).NotNull().NotEmpty().WithMessage(ObterMensagemCampoObrigatorio("{PropertyName}"));
             RuleFor(x => x.Cep).NotNull().NotEmpty().WithMessage(ObterMensagemCampoObrigatorio("{PropertyName}"))
                 .Must(ValidarCep).WithMessage(ObterMensagemValorInvalido("{PropertyName}"));
             RuleFor(x => x.Numero).NotNull().NotEmpty().WithMessage(ObterMensagemCampoObrigatorio("{PropertyName}"))

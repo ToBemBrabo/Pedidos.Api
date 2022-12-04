@@ -9,8 +9,8 @@ namespace Pedidos.Application.src.Interfaces
     public interface IApplicationService<TEntity, TDto> : IScopedDependency
         where TEntity : EntityBase where TDto : BaseDto
     {
-        Task<ResultService<TDto>> Cadastrar(TDto model);
+        Task<ResultService<TDto>> CadastrarAtualizar(TDto model);
 
-        Task<RetornoPaginado<TDto>> Listar(int pagina);
+        Task<RetornoPaginado<TDto>> Listar(int pagina, int registrosPorPagina);
     }
 }

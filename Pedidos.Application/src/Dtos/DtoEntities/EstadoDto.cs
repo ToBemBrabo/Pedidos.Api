@@ -5,5 +5,7 @@
         public string Uf { get; set; }
 
         public string Descricao { get; set; }
+
+        public long PaisId { get; set; }
     }
 }

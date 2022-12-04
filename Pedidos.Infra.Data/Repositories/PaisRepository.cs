@@ -17,7 +17,7 @@ namespace Pedidos.Infra.Data.Repositories
                 .Where(x => x.Nome.ToUpper().Contains(upperText))
                 .OrderBy(x => x.Id);
 
-            return GetReturnPagineted(pagina, result, registrosPorPagina);
+            return GetReturnPagineted(result, pagina, registrosPorPagina);
         }
     }
 }

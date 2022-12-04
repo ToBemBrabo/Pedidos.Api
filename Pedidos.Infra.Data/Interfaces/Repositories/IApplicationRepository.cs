@@ -8,7 +8,7 @@ namespace Pedidos.Infra.Data.Interfaces.Repositories
     {
         #region Consultas
 
-        Task<ResultadoConsultaPaginado<TEntity>> Listar(int pagina);
+        Task<ResultadoConsultaPaginado<TEntity>> Listar(int pagina, int registrosPorPagina);
 
         IQueryable<TEntity> GetAll();
 

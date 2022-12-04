@@ -13,7 +13,5 @@ namespace Pedidos.Application.src.Dtos.DtoEntities
         public long CategoriaId { get; set; }
 
         public CategoriaProduto Categoria { get; set; }
-
-        public virtual ICollection<ListaPrecoProduto> ListaPrecoProduto { get; set; }
     }
 }

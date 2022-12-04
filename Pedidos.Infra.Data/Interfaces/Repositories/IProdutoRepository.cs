@@ -6,7 +6,7 @@ namespace Pedidos.Interface.Repositories
 {
     public interface IProdutoRepository : IApplicationRepository<Produto>
     {
-        Task<ResultadoConsultaPaginado<Produto>> BuscarProdutoPorNome(string text, int pagina);
+        Task<ResultadoConsultaPaginado<Produto>> BuscarProdutoPorNome(string text, int pagina, int registrosPorPagina);
 
         Task<Produto> ObterProdutoComIncludes(long id);
 

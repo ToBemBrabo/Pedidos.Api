@@ -32,15 +32,16 @@ namespace Pedidos.Application.Services
 
         #region Public Methods
 
-        public virtual async Task<ResultService<TDto>> Cadastrar(TDto model)
+        public virtual async Task<ResultService<TDto>> CadastrarAtualizar(TDto model)
         {
             try
             {
                 var entity = _mapper.Map<TEntity>(model);
 
-                await InsertAsync(entity);
+                if (entity.Id > 0L)
+                    return await AtualizarCadastro(entity);
 
-                return ResultService.Ok(_mapper.Map<TDto>(model));
+                return await Cadastrar(entity);
             }
             catch (Exception ex)
             {
@@ -48,9 +49,9 @@ namespace Pedidos.Application.Services
             }
         }
 
-        public async Task<RetornoPaginado<TDto>> Listar(int pagina)
+        public async Task<RetornoPaginado<TDto>> Listar(int pagina, int registrosPorPagina)
         {
-            var list = await _repository.Listar(pagina);
+            var list = await _repository.Listar(pagina, registrosPorPagina);
 
             return ObterRetornoPaginado(list);
         }
@@ -65,9 +66,9 @@ namespace Pedidos.Application.Services
             {
                 await _repository.InsertAsync(entity);
             }
-            catch
+            catch (Exception ex)
             {
-                throw new InsertException();
+                throw new InsertOrUpdateException(ex.Message);
             }
         }
 
@@ -82,5 +83,35 @@ namespace Pedidos.Application.Services
         }
 
         #endregion Protected Methods
+
+        #region Private Methods
+
+        private async Task<ResultService<TDto>> AtualizarCadastro(TEntity entity)
+        {
+            await UpdateAsync(entity);
+
+            return ResultService.Ok(_mapper.Map<TDto>(entity));
+        }
+
+        private async Task<ResultService<TDto>> Cadastrar(TEntity entity)
+        {
+            await InsertAsync(entity);
+
+            return ResultService.Ok(_mapper.Map<TDto>(entity));
+        }
+
+        private async Task UpdateAsync(TEntity entity)
+        {
+            try
+            {
+                await _repository.UpdateAsync(entity);
+            }
+            catch (Exception ex)
+            {
+                throw new InsertOrUpdateException(ex.Message);
+            }
+        }
+
+        #endregion Private Methods
     }
 }

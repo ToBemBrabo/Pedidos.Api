@@ -8,5 +8,11 @@ namespace Pedidos.Application.src.Validators
         public ValidatorBase()
         {
         }
+
+        protected string ObterMensagemCampoObrigatorio(string propertyName)
+            => $"O campo {propertyName} é obrigatório.";
+
+        protected string ObterMensagemValorInvalido(string propertyName)
+            => $"O valor informado no campo {propertyName} é inválido.";
     }
 }

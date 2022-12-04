@@ -28,20 +28,20 @@ namespace Pedidos.Api.Controllers
 
         [HttpGet]
         [Route("Localizar")]
-        public async Task<RetornoPaginado<ProdutoDto>> BuscarProdutoPorNome(string text, int pagina = 0)
+        public async Task<RetornoPaginado<ProdutoDto>> BuscarProdutoPorNome(string text, int pagina = 0, int registrosPorPagina = 0)
         {
-            return await _produtoService.BuscarProdutoPorNome(text, pagina);
+            return await _produtoService.BuscarProdutoPorNome(text, pagina, registrosPorPagina);
         }
 
         [HttpGet]
-        [Route("DetalhesPorId")]
+        [Route("LocalizarPorId")]
         public async Task<ProdutoDto> ObterProdutoComIncludes(long id)
         {
             return await _produtoService.ObterProdutoComIncludes(id);
         }
 
         [HttpGet]
-        [Route("DetalhesPorCod")]
+        [Route("LocalizarPorCod")]
         public async Task<ProdutoDto> ObterProdutoComIncludes(string codigo)
         {
             return await _produtoService.ObterProdutoComIncludes(codigo);

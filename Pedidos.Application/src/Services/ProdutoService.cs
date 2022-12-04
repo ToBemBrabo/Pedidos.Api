@@ -16,11 +16,11 @@ namespace Pedidos.Application.Services
             _produtoRepository = produtoRepository;
         }
 
-        public async Task<RetornoPaginado<ProdutoDto>> BuscarProdutoPorNome(string text, int pagina)
+        public async Task<RetornoPaginado<ProdutoDto>> BuscarProdutoPorNome(string text, int pagina, int registrosPorPagina = 0)
         {
             var upperText = text.ToUpper();
 
-            var resultado = await _produtoRepository.BuscarProdutoPorNome(upperText, pagina);
+            var resultado = await _produtoRepository.BuscarProdutoPorNome(upperText, pagina, registrosPorPagina);
 
             return ObterRetornoPaginado(resultado);
         }

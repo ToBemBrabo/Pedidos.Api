@@ -11,7 +11,7 @@ namespace Pedidos.Application.src.Dtos.DtoEntities
 
         public string Cpf { get; set; }
 
-        public string InscricaoFederal { get; set; }
+        public string Cnpj { get; set; }
 
         public long EnderecoId { get; set; }
 

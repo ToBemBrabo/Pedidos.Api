@@ -32,8 +32,8 @@ namespace Pedidos.Api.Controllers
         #region Public Methods
 
         [HttpPost]
-        [Route("Cadastrar")]
-        public async Task<ResultService<TDto>> Cadastrar([FromBody] TDto model)
+        [Route("CadastrarAtualizar")]
+        public async Task<ResultService<TDto>> CadastrarAtualizar([FromBody] TDto model)
         {
             if (model is null)
                 return ResultService.Fail<TDto>("Objeto nulo é inválido.");
@@ -43,14 +43,14 @@ namespace Pedidos.Api.Controllers
             if (!resultadoValidacao.IsValid)
                 return ResultService.RequestError<TDto>("Ocorreram erros de validação, verifique.", resultadoValidacao);
 
-            return await _applicationService.Cadastrar(model);
+            return await _applicationService.CadastrarAtualizar(model);
         }
 
         [HttpGet]
         [Route("Listar")]
-        public async Task<RetornoPaginado<TDto>> ListarAsync(int pagina = 1)
+        public async Task<RetornoPaginado<TDto>> Listar(int pagina = 0, int registrosPorPagina = 0)
         {
-            return await _applicationService.Listar(pagina);
+            return await _applicationService.Listar(pagina, registrosPorPagina);
         }
 
         #endregion Public Methods

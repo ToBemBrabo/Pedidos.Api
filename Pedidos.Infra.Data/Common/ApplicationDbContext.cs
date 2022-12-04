@@ -5,6 +5,8 @@ namespace Pedidos.Infra.Data.Common
 {
     public class ApplicationDbContext : DbContext
     {
+        public DbSet<Pais> Pais { get; set; }
+
         public DbSet<Estado> Estado { get; set; }
 
         public DbSet<Cidade> Cidade { get; set; }
