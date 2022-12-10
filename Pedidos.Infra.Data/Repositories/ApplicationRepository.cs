@@ -12,10 +12,10 @@ namespace Pedidos.Infra.Data.Repositories
     {
         #region Fields
 
-        protected const int maxRegistrosPorPagina = 200;
         protected readonly DbContext Context;
         protected readonly DbSet<TEntity> DbSet;
 
+        protected const int maxRegistrosPorPagina = 200;
         protected int RegistrosPorPagina = 10;
 
         #endregion Fields
@@ -114,15 +114,15 @@ namespace Pedidos.Infra.Data.Repositories
         {
             SetNumberOfResults(registrosPorPagina);
 
-            var resultPagineted = await result
+            var paginetedResult = await result
                 .Skip(ObterQuantidadeDeRegistrosAListar(pagina))
                 .Take(RegistrosPorPagina).ToListAsync();
 
             return new ResultadoConsultaPaginado<TEntity>
             {
-                PaginaAtual = pagina + 1,
-                TotalDePaginas = (result.Count() / RegistrosPorPagina) + 1,
-                Retorno = resultPagineted,
+                PaginaAtual = pagina,
+                TotalDePaginas = result.Count() / RegistrosPorPagina,
+                Retorno = paginetedResult,
             };
         }
 

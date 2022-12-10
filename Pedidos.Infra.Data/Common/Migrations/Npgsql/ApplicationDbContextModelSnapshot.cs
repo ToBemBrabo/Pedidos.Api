@@ -37,7 +37,7 @@ namespace Pedidos.Infra.Data.Common.Migrations.Npgsql
 
                     b.HasKey("Id");
 
-                    b.ToTable("CategoriaProduto");
+                    b.ToTable("CategoriaProduto", (string)null);
                 });
 
             modelBuilder.Entity("Pedidos.Domain.Entities.Cidade", b =>
@@ -60,7 +60,7 @@ namespace Pedidos.Infra.Data.Common.Migrations.Npgsql
 
                     b.HasIndex("EstadoId");
 
-                    b.ToTable("Cidade");
+                    b.ToTable("Cidade", (string)null);
                 });
 
             modelBuilder.Entity("Pedidos.Domain.Entities.Endereco", b =>
@@ -103,7 +103,7 @@ namespace Pedidos.Infra.Data.Common.Migrations.Npgsql
 
                     b.HasIndex("CidadeId");
 
-                    b.ToTable("Endereco");
+                    b.ToTable("Endereco", (string)null);
                 });
 
             modelBuilder.Entity("Pedidos.Domain.Entities.Estado", b =>
@@ -118,6 +118,9 @@ namespace Pedidos.Infra.Data.Common.Migrations.Npgsql
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<long>("PaisId")
+                        .HasColumnType("bigint");
+
                     b.Property<string>("Uf")
                         .IsRequired()
                         .HasMaxLength(2)
@@ -125,7 +128,200 @@ namespace Pedidos.Infra.Data.Common.Migrations.Npgsql
 
                     b.HasKey("Id");
 
-                    b.ToTable("Estado");
+                    b.HasIndex("PaisId");
+
+                    b.ToTable("Estado", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            Descricao = "Acre",
+                            PaisId = 1L,
+                            Uf = "AC"
+                        },
+                        new
+                        {
+                            Id = 2L,
+                            Descricao = "Alagoas",
+                            PaisId = 1L,
+                            Uf = "AL"
+                        },
+                        new
+                        {
+                            Id = 3L,
+                            Descricao = "Amapá",
+                            PaisId = 1L,
+                            Uf = "AP"
+                        },
+                        new
+                        {
+                            Id = 4L,
+                            Descricao = "Amazonas",
+                            PaisId = 1L,
+                            Uf = "AM"
+                        },
+                        new
+                        {
+                            Id = 5L,
+                            Descricao = "Bahia",
+                            PaisId = 1L,
+                            Uf = "BA"
+                        },
+                        new
+                        {
+                            Id = 6L,
+                            Descricao = "Ceara",
+                            PaisId = 1L,
+                            Uf = "CE"
+                        },
+                        new
+                        {
+                            Id = 7L,
+                            Descricao = "Distrito Federal",
+                            PaisId = 1L,
+                            Uf = "DF"
+                        },
+                        new
+                        {
+                            Id = 8L,
+                            Descricao = "Espirito Santo",
+                            PaisId = 1L,
+                            Uf = "ES"
+                        },
+                        new
+                        {
+                            Id = 9L,
+                            Descricao = "Goiás",
+                            PaisId = 1L,
+                            Uf = "GO"
+                        },
+                        new
+                        {
+                            Id = 10L,
+                            Descricao = "Maranhão",
+                            PaisId = 1L,
+                            Uf = "MA"
+                        },
+                        new
+                        {
+                            Id = 11L,
+                            Descricao = "Mato Grosso",
+                            PaisId = 1L,
+                            Uf = "MT"
+                        },
+                        new
+                        {
+                            Id = 12L,
+                            Descricao = "Mato Grosso do Sul",
+                            PaisId = 1L,
+                            Uf = "MS"
+                        },
+                        new
+                        {
+                            Id = 13L,
+                            Descricao = "Minas Gerais",
+                            PaisId = 1L,
+                            Uf = "MG"
+                        },
+                        new
+                        {
+                            Id = 14L,
+                            Descricao = "Para",
+                            PaisId = 1L,
+                            Uf = "PA"
+                        },
+                        new
+                        {
+                            Id = 15L,
+                            Descricao = "Paraíba",
+                            PaisId = 1L,
+                            Uf = "PB"
+                        },
+                        new
+                        {
+                            Id = 16L,
+                            Descricao = "Paraná",
+                            PaisId = 1L,
+                            Uf = "PR"
+                        },
+                        new
+                        {
+                            Id = 17L,
+                            Descricao = "Pernambuco",
+                            PaisId = 1L,
+                            Uf = "PE"
+                        },
+                        new
+                        {
+                            Id = 18L,
+                            Descricao = "Piauí",
+                            PaisId = 1L,
+                            Uf = "PI"
+                        },
+                        new
+                        {
+                            Id = 19L,
+                            Descricao = "Rio de Janeiro",
+                            PaisId = 1L,
+                            Uf = "RJ"
+                        },
+                        new
+                        {
+                            Id = 20L,
+                            Descricao = "Rio Grande do Norte",
+                            PaisId = 1L,
+                            Uf = "RN"
+                        },
+                        new
+                        {
+                            Id = 21L,
+                            Descricao = "Rio Grande do Sul",
+                            PaisId = 1L,
+                            Uf = "RS"
+                        },
+                        new
+                        {
+                            Id = 22L,
+                            Descricao = "Rondônia",
+                            PaisId = 1L,
+                            Uf = "RO"
+                        },
+                        new
+                        {
+                            Id = 23L,
+                            Descricao = "Roraima",
+                            PaisId = 1L,
+                            Uf = "RR"
+                        },
+                        new
+                        {
+                            Id = 24L,
+                            Descricao = "Santa Catarina",
+                            PaisId = 1L,
+                            Uf = "SC"
+                        },
+                        new
+                        {
+                            Id = 25L,
+                            Descricao = "São Paulo",
+                            PaisId = 1L,
+                            Uf = "SP"
+                        },
+                        new
+                        {
+                            Id = 26L,
+                            Descricao = "Sergipe",
+                            PaisId = 1L,
+                            Uf = "SE"
+                        },
+                        new
+                        {
+                            Id = 27L,
+                            Descricao = "Tocantins",
+                            PaisId = 1L,
+                            Uf = "TO"
+                        });
                 });
 
             modelBuilder.Entity("Pedidos.Domain.Entities.Imagem", b =>
@@ -155,7 +351,7 @@ namespace Pedidos.Infra.Data.Common.Migrations.Npgsql
 
                     b.HasIndex("ProdutoId");
 
-                    b.ToTable("Imagem");
+                    b.ToTable("Imagem", (string)null);
                 });
 
             modelBuilder.Entity("Pedidos.Domain.Entities.ListaPreco", b =>
@@ -173,7 +369,7 @@ namespace Pedidos.Infra.Data.Common.Migrations.Npgsql
 
                     b.HasKey("Id");
 
-                    b.ToTable("ListaPreco");
+                    b.ToTable("ListaPreco", (string)null);
                 });
 
             modelBuilder.Entity("Pedidos.Domain.Entities.ListaPrecoProduto", b =>
@@ -208,7 +404,7 @@ namespace Pedidos.Infra.Data.Common.Migrations.Npgsql
 
                     b.HasIndex("ProdutoId");
 
-                    b.ToTable("ListaPrecoProduto");
+                    b.ToTable("ListaPrecoProduto", (string)null);
                 });
 
             modelBuilder.Entity("Pedidos.Domain.Entities.ListaPrecoVendedor", b =>
@@ -231,7 +427,32 @@ namespace Pedidos.Infra.Data.Common.Migrations.Npgsql
 
                     b.HasIndex("VendedorId");
 
-                    b.ToTable("ListaPrecoVendedor");
+                    b.ToTable("ListaPrecoVendedor", (string)null);
+                });
+
+            modelBuilder.Entity("Pedidos.Domain.Entities.Pais", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
+
+                    b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Pais", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            Nome = "Brasil"
+                        });
                 });
 
             modelBuilder.Entity("Pedidos.Domain.Entities.Pedido", b =>
@@ -260,7 +481,7 @@ namespace Pedidos.Infra.Data.Common.Migrations.Npgsql
 
                     b.HasIndex("VendedorId");
 
-                    b.ToTable("Pedido");
+                    b.ToTable("Pedido", (string)null);
                 });
 
             modelBuilder.Entity("Pedidos.Domain.Entities.Pessoa", b =>
@@ -296,7 +517,7 @@ namespace Pedidos.Infra.Data.Common.Migrations.Npgsql
 
                     b.HasIndex("EnderecoId");
 
-                    b.ToTable("Pessoa");
+                    b.ToTable("Pessoa", (string)null);
                 });
 
             modelBuilder.Entity("Pedidos.Domain.Entities.Produto", b =>
@@ -326,7 +547,7 @@ namespace Pedidos.Infra.Data.Common.Migrations.Npgsql
 
                     b.HasIndex("CategoriaId");
 
-                    b.ToTable("Produto");
+                    b.ToTable("Produto", (string)null);
                 });
 
             modelBuilder.Entity("Pedidos.Domain.Entities.ProdutoPedido", b =>
@@ -363,7 +584,7 @@ namespace Pedidos.Infra.Data.Common.Migrations.Npgsql
 
                     b.HasIndex("ProdutoId");
 
-                    b.ToTable("ProdutoPedido");
+                    b.ToTable("ProdutoPedido", (string)null);
                 });
 
             modelBuilder.Entity("Pedidos.Domain.Entities.Vendedor", b =>
@@ -386,7 +607,7 @@ namespace Pedidos.Infra.Data.Common.Migrations.Npgsql
 
                     b.HasIndex("EnderecoId");
 
-                    b.ToTable("Vendedor");
+                    b.ToTable("Vendedor", (string)null);
                 });
 
             modelBuilder.Entity("Pedidos.Domain.Entities.Cidade", b =>
@@ -409,6 +630,17 @@ namespace Pedidos.Infra.Data.Common.Migrations.Npgsql
                         .IsRequired();
 
                     b.Navigation("Cidade");
+                });
+
+            modelBuilder.Entity("Pedidos.Domain.Entities.Estado", b =>
+                {
+                    b.HasOne("Pedidos.Domain.Entities.Pais", "Pais")
+                        .WithMany()
+                        .HasForeignKey("PaisId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Pais");
                 });
 
             modelBuilder.Entity("Pedidos.Domain.Entities.Imagem", b =>

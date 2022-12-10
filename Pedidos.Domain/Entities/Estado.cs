@@ -10,5 +10,7 @@ namespace Pedidos.Domain.Entities
         public string Descricao { get; set; }
 
         public long PaisId { get; set; }
+
+        public Pais Pais { get; set; }
     }
 }

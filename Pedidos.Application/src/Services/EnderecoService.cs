@@ -14,5 +14,8 @@ namespace Pedidos.Application.Services
         {
             _enderecoRepository = enderecoRepository;
         }
+
+        public async Task<EnderecoDto> ObterEnderecoPorId(long enderecoId)
+            => _mapper.Map<EnderecoDto>(await _enderecoRepository.ObterEnderecoComIncludes(enderecoId));
     }
 }
