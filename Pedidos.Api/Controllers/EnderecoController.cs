@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Pedidos.Application.src.Dtos.DtoEntities;
-using Pedidos.Application.src.Interfaces;
-using Pedidos.Application.src.Validators;
+using Pedidos.Application.Dtos.DtoEntities;
+using Pedidos.Application.Interfaces;
+using Pedidos.Application.Validators;
 using Pedidos.Domain.Entities;
 
 namespace Pedidos.Api.Controllers
